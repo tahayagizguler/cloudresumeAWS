@@ -1,0 +1,38 @@
+name: Deploy Infrastructure
+on:
+  push:
+    branches:
+      - main
+jobs:
+
+  terraform:
+    name: Terraform Infrastructure
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: Init
+      id: init
+      run: terraform init
+
+    - name: plan
+      id: plan
+      run: terraform plan
+
+    - name: terraform apply
+      id: apply
+      run: terraform apply -auto-approve
+
+    - name: Sync S3
+      uses: jakejarvis/s3-sync-action@master
+      env:
+        SOURCE_DIR: './website/html'
+        AWS_REGION: 'us-east-1'
+        AWS_S3_BUCKET: 's3cloudresumetyg'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
