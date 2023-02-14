@@ -17,11 +17,5 @@ resource "aws_dynamodb_table" "visiters" {
     ]
 
     create_before_destroy = true
-  }
-
-  provisioned_capacity {
-    read_capacity  = 1
-    write_capacity = 1
-  }  
-  
+  } 
 }
