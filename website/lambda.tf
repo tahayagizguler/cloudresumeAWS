@@ -3,7 +3,7 @@ data "archive_file" "lambda_zip" {
 
   source_dir  = "${path.module}/src"
   output_path = "${path.module}/src.zip"
-}
+}    
 
 resource "aws_s3_object" "this" {
   bucket = aws_s3_bucket.cloud-resume-bucket.id
