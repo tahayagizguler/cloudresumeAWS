@@ -56,7 +56,7 @@ resource "aws_iam_role" "lambda_exec" {
 }
 
 resource "aws_iam_policy" "lambda_exec_role" {
-  name = "lambda-tf-pattern-ddb-post"
+  name_prefix = "lambda-tf-pattern-ddb-post"
 
   policy = <<POLICY
 {
