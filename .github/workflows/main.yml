@@ -6,7 +6,6 @@ on:
       - main
       
     paths:
-      - '*.tf'
       - '!dynamodb.tf'
 
 env:
