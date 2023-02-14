@@ -9,5 +9,4 @@ resource "aws_dynamodb_table" "visiters" {
     name = "id"
     type = "N"
   }
-
 }
