@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "visiters" {
-  name           = var.dynamodb_table
+  name           = "counter"
   billing_mode   = "PROVISIONED"
   read_capacity  = 1
   write_capacity = 1
@@ -10,5 +10,4 @@ resource "aws_dynamodb_table" "visiters" {
     type = "N"
   }
 
-  ignore_errors = ["ResourceInUseException"]
 }
