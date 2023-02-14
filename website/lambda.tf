@@ -36,7 +36,7 @@ resource "aws_lambda_function" "apigw_lambda_ddb" {
   }
   
   
-}
+} 
 
 resource "aws_iam_role" "lambda_exec" {
   name_prefix = "LambdaDdbPost"
