@@ -10,9 +10,5 @@ resource "aws_dynamodb_table" "visiters" {
     type = "N"
   }
 
-  lifecycle {
-    ignore_changes = [
-      name
-    ]
-  }
+  ignore_errors = ["ResourceInUseException"]
 }
