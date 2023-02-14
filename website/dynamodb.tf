@@ -9,13 +9,4 @@ resource "aws_dynamodb_table" "visiters" {
     name = "id"
     type = "N"
   }
-  
- 
-  lifecycle {
-    ignore_changes = [
-      name
-    ]
-
-    create_before_destroy = true
-  } 
 }
