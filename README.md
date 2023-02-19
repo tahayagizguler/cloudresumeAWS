@@ -4,6 +4,9 @@
 # ![](https://user-images.githubusercontent.com/72565272/218838913-63231e7d-38c5-41dc-b78f-85d2c518f5ab.jpg)
 
 # Resume Website
+
+You can find my blog post [here](https://dev.to/tahayagizguler/cloud-resume-challenge-aws-4ghf). 
+
 <table>
 <tr>
 <td>
