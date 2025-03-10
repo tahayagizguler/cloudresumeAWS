@@ -288,9 +288,9 @@
 
          <div class="counter">
             <p><span class="lead">
-               <h1 style="text-align: center">This page has been visited <var id="counter1" style="color: white; font-size: larger;"></div> times!</h1>
+               <h1 style="text-align: center">This page has been visited <var id="counter1"></var> times!</h1>
                <script>
-                  fetch('https://1mji9kuu3m.execute-api.us-east-1.amazonaws.com/')
+                  fetch('https://hvpx1pmtk2.execute-api.us-east-1.amazonaws.com/')
                   .then(res => res.json())
                   .then(res => {document.getElementById("counter").innerHTML = res})
                   .then(data => console.log(data));
