@@ -21,9 +21,17 @@ provider "aws" {
   # profile = "default"  
   region = "us-east-1"
 }
+
+# Generate random string for bucket name
+resource "random_string" "bucket_suffix" {
+  length  = 8
+  special = false
+  upper   = false
+}
+
 # Modules
 module "website" {
   source = "./website"
-  bucket_name = "s3cloudresumetyg"
-  domain_name = "tahayagizguler.tech"
+  bucket_name = "tyg-resume-${random_string.bucket_suffix.result}"
+  domain_name = "tahayagizguler.space"
 }

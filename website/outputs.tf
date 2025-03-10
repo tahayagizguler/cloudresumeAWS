@@ -5,3 +5,7 @@ output "s3_bucket_id" {
 output "fileset-results" {
   value = fileset(path.module, "**/*.txt")
 }
+
+output "api_url" {
+  value = aws_apigatewayv2_stage.default.invoke_url
+}
