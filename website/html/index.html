@@ -89,7 +89,6 @@
                <p class="address">
                   <span><b>Name:</b> Taha Yag&#305;z Guler</span><br>
                   <span><b>Location:</b> Istanbul</span><br>
-                  <span><b>Phone:</b> +90 546 260 02 95</span><br>
                   <span><b>Email:</b> yagizguler7@gmail.com</span>
                </p>
             </div>
@@ -288,11 +287,11 @@
 
          <div class="counter">
             <p><span class="lead">
-               <h1 style="text-align: center">This page has been visited <var id="counter1"></var> times!</h1>
+               <h1 style="text-align: center">This page has been visited <var id="counter2"></var> times!</h1>
                <script>
                   fetch('https://hvpx1pmtk2.execute-api.us-east-1.amazonaws.com/')
                   .then(res => res.json())
-                  .then(res => {document.getElementById("counter").innerHTML = res})
+                  .then(res => {document.getElementById("counter2").innerHTML = res})
                   .then(data => console.log(data));
                </script>
             </span></p>
