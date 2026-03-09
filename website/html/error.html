@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - System Error | Taha Yağiz Güler</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Error Page Specific Styles */
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 700;
+            color: var(--matrix-green);
+            text-shadow:
+                0 0 20px rgba(0, 255, 65, 0.8),
+                0 0 40px rgba(0, 255, 65, 0.6),
+                0 0 60px rgba(0, 255, 65, 0.4);
+            line-height: 1;
+            margin-bottom: 20px;
+            animation: glitch-pulse 2s infinite;
+        }
+
+        .error-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--matrix-cyan);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            max-width: 600px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .terminal-window-error {
+            background: var(--terminal-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            max-width: 700px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .error-detail {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .error-detail .prompt {
+            color: var(--matrix-cyan);
+            margin-right: 8px;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid;
+        }
+
+        .btn-primary {
+            background: var(--matrix-green);
+            border-color: var(--matrix-green);
+            color: var(--matrix-black);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--matrix-green);
+            box-shadow: var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--matrix-cyan);
+            color: var(--matrix-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: var(--matrix-green);
+            color: var(--matrix-green);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-rain"></canvas>
+
+    <!-- Navigation Terminal -->
+    <nav class="nav-terminal">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="title">devops@matrix:~$</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">../home</a>
+            <a href="index.html#about">./about</a>
+            <a href="index.html#projects">./projects</a>
+            <a href="index.html#contact">./contact</a>
+        </div>
+    </nav>
+
+    <!-- Error Content -->
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            The requested resource could not be located. This endpoint appears to be missing or has been moved.
+            Please check the URL or return to the main system.
+        </p>
+
+        <div class="terminal-window-error">
+            <div class="terminal-header-bar">
+                <span>error.log - System Diagnostics</span>
+            </div>
+            <div class="terminal-content">
+                <div class="output-line">
+                    <span class="prompt">$</span> cat /var/log/error.txt
+                </div>
+                <div class="error-detail">
+                    <div class="output-line">
+                        <span class="prompt">$</span> echo "ERROR_CODE: 404_NOT_FOUND"
+                    </div>
+                    <div class="output-line">
+                        <span class="prompt">$</span> echo "TIMESTAMP: <span id="error-timestamp"></span>"
+                    </div>
+                    <div class="output-line">
+                        <span class="prompt">$</span> echo "REQUESTED_URL: <span id="requested-url"></span>"
+                    </div>
+                    <div class="output-line">
+                        <span class="prompt">$</span> echo "STATUS: Resource unavailable"
+                    </div>
+                </div>
+                <div class="output-line mt-4">
+                    <span class="prompt">$</span> <span class="success">Diagnostics complete. Awaiting user input...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-actions">
+            <a href="index.html" class="btn-primary">
+                <span>⟲</span>
+                <span>Return to Home</span>
+            </a>
+            <a href="index.html#contact" class="btn-secondary">
+                <span>✉</span>
+                <span>Report Issue</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer Terminal -->
+    <footer class="footer-terminal">
+        <div class="footer-content">
+            <div class="system-status">
+                <span class="status-indicator"></span>
+                <span>ERROR ENCOUNTERED</span>
+            </div>
+            <div class="footer-info">
+                <span>DevOps Engineer Portfolio</span>
+                <span class="separator">|</span>
+                <span>Matrix Theme</span>
+            </div>
+            <div class="timestamp">
+                <span class="prompt">$</span>
+                <span id="datetime"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Error page specific scripts
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display current timestamp
+            const timestampElement = document.getElementById('error-timestamp');
+            if (timestampElement) {
+                const now = new Date();
+                timestampElement.textContent = now.toISOString();
+            }
+
+            // Display requested URL
+            const urlElement = document.getElementById('requested-url');
+            if (urlElement) {
+                urlElement.textContent = window.location.href;
+            }
+        });
+    </script>
+</body>
+</html>
