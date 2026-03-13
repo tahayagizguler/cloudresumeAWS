@@ -33,5 +33,5 @@ resource "random_string" "bucket_suffix" {
 module "website" {
   source = "./website"
   bucket_name = "tyg-resume-${random_string.bucket_suffix.result}"
-  domain_name = "tahayagizguler.space"
+  domain_name = "tahayagizguler.cloud"
 }
