@@ -153,8 +153,8 @@ function updateVisitorCounter() {
 // Initialize visitor counter
 document.addEventListener('DOMContentLoaded', () => {
     updateVisitorCounter();
-    // Optional: Refresh counter every 30 seconds
-    setInterval(updateVisitorCounter, 30000);
+    // Removed: setInterval(updateVisitorCounter, 30000);
+    // The visitor counter should only be incremented once per page view
 });
 
 // Update datetime in footer
