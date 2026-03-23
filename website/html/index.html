@@ -10,7 +10,7 @@
     <meta name="keywords" content="DevOps, Cloud Engineer, Kubernetes, Terraform, AWS, Infrastructure as Code, CI/CD, Taha Yağız Güler">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://YOUR_DOMAIN_HERE">
+    <link rel="canonical" href="https://tahayagizguler.cloud">
 
     <title>Taha Yağız Güler - DevOps / Cloud Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1470,7 +1470,7 @@
             const errorContainer = document.getElementById('left-blog-error');
 
             try {
-                const response = await fetch('https://dev.to/api/articles?username=tahayagizguler&per_page=4');
+                const response = await fetch(`https://dev.to/api/articles?username=tahayagizguler&per_page=4&t=${Date.now()}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
