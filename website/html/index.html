@@ -1470,7 +1470,7 @@
 
             try {
                 const response = await fetch(
-                    `https://dev.to/api/articles?username=tahayagizguler${Date.now()}`
+                    `https://dev.to/api/articles?username=tahayagizguler&per_page=4&t=${Date.now()}`
                 );
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 
