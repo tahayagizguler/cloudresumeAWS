@@ -1,5 +1,4 @@
 name: Copy website to S3 and invalidate CloudFront Distribution
-
 on:
   push:
     branches:
@@ -11,7 +10,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-
       - name: sync s3
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -35,3 +33,26 @@ jobs:
           AWS_REGION: "us-east-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  notify:
+    needs: [copy-website-to-s3-and-invalidate-cloudfront, invalidate-cloudfront-distribution]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Mattermost - Success
+        if: needs.copy-website-to-s3-and-invalidate-cloudfront.result == 'success' && needs.invalidate-cloudfront-distribution.result == 'success'
+        run: |
+          curl -X POST -H 'Content-Type: application/json' \
+          -d '{
+            "text": "✅ **Deploy Başarılı** — `cloudresumeAWS`\n**Branch:** main\n**Commit:** `${{ github.sha }}`\n**Yapan:** ${{ github.actor }}\n**Detay:** [Workflow logları](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          }' \
+          "${{ secrets.MATTERMOST_WEBHOOK_URL }}"
+
+      - name: Notify Mattermost - Failure
+        if: needs.copy-website-to-s3-and-invalidate-cloudfront.result == 'failure' || needs.invalidate-cloudfront-distribution.result == 'failure'
+        run: |
+          curl -X POST -H 'Content-Type: application/json' \
+          -d '{
+            "text": "❌ **Deploy Başarısız** — `cloudresumeAWS`\n**Branch:** main\n**Commit:** `${{ github.sha }}`\n**Yapan:** ${{ github.actor }}\n**Detay:** [Workflow logları](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          }' \
+          "${{ secrets.MATTERMOST_WEBHOOK_URL }}"
